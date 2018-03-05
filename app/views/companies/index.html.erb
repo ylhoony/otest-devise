@@ -1,0 +1,10 @@
+<h2>Organizations</h2>
+<%= link_to "Add New Company", new_company_path %>
+
+<% if @companies.present? %>
+  <% @companies.each do |company| %>
+    <%= company.name %>
+  <% end %>
+<% else %>
+  <p>There are no companies you joined, please create one!</p>
+<% end %>

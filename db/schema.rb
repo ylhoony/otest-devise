@@ -10,13 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301201808) do
+ActiveRecord::Schema.define(version: 20180303085601) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.integer "currency_id"
-    t.integer "company_status_id"
-    t.integer "pricing_plan_id"
+    t.integer "country_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "alpha_2_code"
+    t.string "alpha_3_code"
+    t.string "numeric_code"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "code_alpha"
+    t.string "code_numeric"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "company_id"
+    t.string "job_title"
+    t.integer "employee_role_id"
+    t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180301201808) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "current_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

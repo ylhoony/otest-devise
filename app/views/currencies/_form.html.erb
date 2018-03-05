@@ -1,0 +1,25 @@
+<% if @currency.errors.any? %>
+  <% @currency.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+
+<%= form_for @currency do |f| %>
+
+  <%= f.label :name, "Currency Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :code_alpha, "Code Alpha (ISO-4217): " %>
+  <%= f.text_field :code_alpha %><br/>
+
+  <%= f.label :code_numeric, "Code Numeric (ISO-4217): " %>
+  <%= f.text_field :code_numeric %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

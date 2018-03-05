@@ -1,0 +1,32 @@
+<h2>Currency List</h2>
+<%= link_to "Add Currency", new_currency_path %><br/>
+
+<% if @currencies.present? %>
+<table>
+  <tr>
+    <th>Currency Name</th>
+    <th>Code Alpha (ISO-4217)</th>
+    <th>Code Numeric (ISO-4217)</th>
+    <th>Active?</th>
+  </tr>
+
+  <% @currencies.each do |currency| %>
+    <tr>
+      <td><%= currency.name %></td>
+      <td><%= currency.code_alpha %></td>
+      <td><%= currency.code_numeric %></td>
+      <td><%= check_box "currency", "active", { checked: currency.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_currency_path(currency) %></td>
+      <td>
+        <% if currency.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: currency.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: currency.id } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no currencies available</p>
+<% end %>

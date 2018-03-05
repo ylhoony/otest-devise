@@ -1,0 +1,19 @@
+<h2>New Company</h2>
+
+<%= form_for @company do |f| %>
+
+  <%= f.label :name, "Company Name: " %>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :currency_id, "Base Currency: " %>
+  <%= f.select :currency_id, @currencies.collect { |c| [ c.name, c.id ] }, include_blank: true %><br/>
+
+  <%= f.label :country_id, "Country: " %>
+  <%= f.select :country_id, @countries.collect { |c| [ c.name, c.id ] }, include_blank: true %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+<% end %>
