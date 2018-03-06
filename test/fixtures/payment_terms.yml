@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  trade_credit_percent: 9.99
+  trade_credit_days: 1
+  net_days: 1
+  payment_option_id: 1
+  active: false
+
+two:
+  name: MyString
+  trade_credit_percent: 9.99
+  trade_credit_days: 1
+  net_days: 1
+  payment_option_id: 1
+  active: false

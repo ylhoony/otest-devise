@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :payment_options
+  resources :payment_terms
+  resources :accounts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "menu#index"
 
-  get "dashboard", to: "menu#dashboard"
+  get "dashboard", to: "menu#show_dashboard"
+  post "dashboard", to: "menu#create_dashboard"
   get "demand", to: "menu#demand"
   get "supply", to: "menu#supply"
   get "product", to: "menu#product"

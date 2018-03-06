@@ -1,9 +1,9 @@
 <h2>Organizations</h2>
-<%= link_to "Add New Company", new_company_path %>
+<%= link_to "Add New Company", new_company_path %><br/>
 
 <% if @companies.present? %>
   <% @companies.each do |company| %>
-    <%= company.name %>
+    <%= button_to company.name, dashboard_path, { method: :post, params: { id: company.id } } %><br/>
   <% end %>
 <% else %>
   <p>There are no companies you joined, please create one!</p>

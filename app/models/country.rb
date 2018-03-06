@@ -12,4 +12,8 @@ class Country < ApplicationRecord
     self.alpha_3_code.upcase!
   end
 
+  def capitalize_name
+    self.name.capitalize!
+  end
+
 end

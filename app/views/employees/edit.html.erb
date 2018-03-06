@@ -1,0 +1,18 @@
+employee#edit
+
+<h3><%= @employee.user.first_name %> <%= @employee.user.first_name %></h3>
+
+<%= form_for @employee do |f| %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :company_id %>
+
+  <%= f.label :job_title %>
+  <%= f.text_field :job_title %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: false %>
+  <%= check_box "employee", "active", { checked: @employee.active, disabled: false } %>
+
+
+  <%= f.submit %>
+<% end %>

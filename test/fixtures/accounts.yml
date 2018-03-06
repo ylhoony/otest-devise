@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: MyString
+  type: 
+  account_name: MyString
+  comment: 
+  payment_term_id: 1
+  currency_id: 1
+
+two:
+  company_id: MyString
+  type: 
+  account_name: MyString
+  comment: 
+  payment_term_id: 1
+  currency_id: 1
