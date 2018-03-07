@@ -1,0 +1,20 @@
+<% if @unit_of_measure.errors.any? %>
+  <% @unit_of_measure.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @unit_of_measure do |f| %>
+
+  <%= f.label :name, "Unit of Measure Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

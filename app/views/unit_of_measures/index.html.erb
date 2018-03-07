@@ -1,0 +1,36 @@
+<h3>Unit of Measures List</h3>
+
+<%= link_to "Add New UOM", new_unit_of_measure_path %>
+
+<% if @unit_of_measures.present? %>
+<table>
+  <tr>
+    <th>Unit of Measure Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @unit_of_measures.each do |unit_of_measure| %>
+    <tr>
+      <td><%= unit_of_measure.name %></td>
+      <td><%= check_box "unit_of_measure", "active", { checked: unit_of_measure.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_unit_of_measure_path(unit_of_measure) %></td>
+      <td>
+        <% if unit_of_measure.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: unit_of_measure.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: unit_of_measure.id } %>
+        <% end %>
+      </td>
+      <td><%= button_to "delete", { action: "destroy", id: unit_of_measure.id }, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Unit of Measures available.</p>
+<% end %>
+
+
+

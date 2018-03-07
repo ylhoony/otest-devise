@@ -1,0 +1,25 @@
+<%= form_for @payment_term do |f| %>
+
+  <%= f.label :name, "Payment Term Name: " %>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :net_days, "Date or Net Days: " %>
+  <%= f.text_field :net_days %><br/>
+
+  <%= f.label :payment_option_id, "Payment Option: " %>
+  <%= f.select :payment_option_id, @payment_options.collect { |p| [ p.name, p.id ] }, include_blank: true %><br/>
+
+  <%= f.label :trade_credit_percent, "Trade Credit Percentage: " %>
+  <%= f.text_field :trade_credit_percent %><br/>
+
+  <%= f.label :trade_credit_days, "Trade Credit Days: " %>
+  <%= f.text_field :trade_credit_days %><br/>
+
+  <%= f.hidden_field :company_id, value: current_user.current_company.id %>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+<% end %>

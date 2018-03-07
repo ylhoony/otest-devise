@@ -1,0 +1,20 @@
+<% if @freight_term.errors.any? %>
+  <% @freight_term.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @freight_term do |f| %>
+
+  <%= f.label :name, "Freight Term Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

@@ -19,3 +19,9 @@ countries = Country.create([{ name: "Korea, Republic of", alpha_2_code: "KR", al
                             { name: "Canada", alpha_2_code: "CA", alpha_3_code: "CAN", numeric_code: "124", active: true },
                             { name: "United States", alpha_2_code: "US", alpha_3_code: "USA", numeric_code: "840", active: true},
                             { name: "AUSTRALIA", alpha_2_code: "AU", alpha_3_code: "AUS", numeric_code: "036", active: true }])
+
+payment_options = PaymentOption.create([{ name: "day(s) after invoice date", active: true },
+                                        { name: "of the month following invoice date", active: true },
+                                        { name: "end of month", active: true },
+                                        { name: "of the current month", active: true },
+                                        { name: "day(s) after the end of the invoice month", active: true }])

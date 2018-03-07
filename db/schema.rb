@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306105655) do
+ActiveRecord::Schema.define(version: 20180307183810) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "company_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180306105655) do
     t.text "comment"
     t.integer "payment_term_id"
     t.integer "currency_id"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,20 +62,37 @@ ActiveRecord::Schema.define(version: 20180306105655) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "freight_terms", force: :cascade do |t|
+    t.string "name"
+    t.integer "company_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_options", force: :cascade do |t|
     t.string "name"
-    t.boolean "active"
+    t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "payment_terms", force: :cascade do |t|
     t.string "name"
-    t.decimal "trade_credit_percent", precision: 30, scale: 2
-    t.integer "trade_credit_days"
-    t.integer "net_days"
+    t.integer "company_id"
+    t.decimal "trade_credit_percent", precision: 30, scale: 2, default: "0.0"
+    t.integer "trade_credit_days", default: 0
+    t.integer "net_days", default: 0
     t.integer "payment_option_id"
-    t.boolean "active"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "unit_of_measures", force: :cascade do |t|
+    t.string "name"
+    t.integer "company_id"
+    t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

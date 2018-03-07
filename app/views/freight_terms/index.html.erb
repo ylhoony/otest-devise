@@ -1,0 +1,36 @@
+<h3>Freight Terms List</h3>
+
+<%= link_to "Add New Freight Term", new_freight_term_path %>
+
+<% if @freight_terms.present? %>
+<table>
+  <tr>
+    <th>Freight Term Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @freight_terms.each do |freight_term| %>
+    <tr>
+      <td><%= freight_term.name %></td>
+      <td><%= check_box "freight_term", "active", { checked: freight_term.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_freight_term_path(freight_term) %></td>
+      <td>
+        <% if freight_term.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: freight_term.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: freight_term.id } %>
+        <% end %>
+      </td>
+      <td><%= button_to "delete", { action: "destroy", id: freight_term.id }, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Freight Terms available.</p>
+<% end %>
+
+
+

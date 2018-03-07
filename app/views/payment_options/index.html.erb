@@ -1,0 +1,36 @@
+<h3>Payment Options List</h3>
+
+<%= link_to "Add New Payment Option", new_payment_option_path %>
+
+<% if @payment_options.present? %>
+<table>
+  <tr>
+    <th>Payment Option Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @payment_options.each do |payment_option| %>
+    <tr>
+      <td><%= payment_option.name %></td>
+      <td><%= check_box "payment_option", "active", { checked: payment_option.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_payment_option_path(payment_option) %></td>
+      <td>
+        <% if payment_option.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: payment_option.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: payment_option.id } %>
+        <% end %>
+      </td>
+      <td><%= button_to "delete", { action: "destroy", id: payment_option.id }, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no payment_options available</p>
+<% end %>
+
+
+

@@ -7,8 +7,9 @@ class CreateAccounts < ActiveRecord::Migration[5.1]
       t.text :comment
       t.integer :payment_term_id
       t.integer :currency_id
+      t.boolean :active, dafault: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

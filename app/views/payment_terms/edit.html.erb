@@ -1,0 +1,5 @@
+<h3>Edit Payment Term</h3>
+
+<%= render partial: "payment_terms/form"%>
+
+<%= button_to "Delete Payment Term", { action: "destroy" }, method: "delete", params: { id: @payment_term.id } %>
