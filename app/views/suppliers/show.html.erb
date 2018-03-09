@@ -1,0 +1,12 @@
+<h3>Supplier Information</h3>
+
+<p>Supplier Name: <%= @supplier.name %></p>
+<p>Tax ID Number: <%= @supplier.tax_id_number %></p>
+
+<p>Payment Term: <% if @supplier.payment_term %> <%= @supplier.payment_term.name %> <% end %></p>
+<p>Currency: <%= @supplier.currency.name %></p>
+<p>Default Receipt Warehouse: <%= @supplier.warehouse.name %></p>
+<p>Comment: <%= @supplier.comment %></p>
+<p>Active?: <%= check_box "supplier", "active", { checked: @supplier.active, disabled: true } %></p>
+<p><%= link_to "edit", edit_supplier_path(@supplier) %></p>
+<p><%= link_to "delete", @supplier, method: :delete %></p>

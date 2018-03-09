@@ -1,0 +1,35 @@
+<% if @customer.errors.any? %>
+  <% @customer.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @customer do |f| %>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :name, "Customer Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :tax_id_number, "Tax ID Number: "%>
+  <%= f.text_field :tax_id_number %><br/>
+
+  <%= f.label :payment_term_id, "Payment Term: " %>
+  <%= f.select :payment_term_id, active_payment_terms_list.collect { |payment_term| [ payment_term.name, payment_term.id ] }, include_blank: true %><br/>
+
+  <%= f.label :currency_id, "Currency: " %>
+  <%= f.select :currency_id, active_currencies_list.collect { |currency| [ currency.name, currency.id ] }, include_blank: true %><br/>
+
+  <%= f.label :warehouse_id, "Default Shipping Warehouse: " %>
+  <%= f.select :warehouse_id, active_warehouses_list.collect { |warehouse| [ warehouse.name, warehouse.id ] }, include_blank: true %><br/>
+
+  <%= f.label :comment, "Comment: "%>
+  <%= f.text_area :comment %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

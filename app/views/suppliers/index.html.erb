@@ -1,0 +1,23 @@
+<h3>Suppliers List</h3>
+
+<%= link_to "Add New Supplier", new_supplier_path %>
+
+<% if @suppliers.present? %>
+<table>
+  <tr>
+    <th>Supplier Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @suppliers.each do |supplier| %>
+    <tr>
+      <td><%= link_to supplier.name, supplier_path(supplier) %></td>
+      <td><%= check_box "supplier", "active", { checked: supplier.active, disabled: true } %></td>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Suppliers available.</p>
+<% end %>

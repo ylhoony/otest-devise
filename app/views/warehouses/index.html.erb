@@ -1,0 +1,57 @@
+<h3>Warehouse Locations List</h3>
+
+<%= link_to "Add New Warehouse", new_warehouse_path %>
+
+<% if @warehouses.present? %>
+<table>
+  <tr>
+    <th>Warehouse Name</th>
+    <th>Attention</th>
+    <th>Address Line 1</th>
+    <th>Address Line 2</th>
+    <th>City</th>
+    <th>State/Province</th>
+    <th>Country</th>
+    <th>Postal Code</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Fax</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @warehouses.each do |warehouse| %>
+    <tr>
+      <td><%= link_to warehouse.name, warehouse_path(warehouse) %></td>
+      <td><%= warehouse.attention %></td>
+      <td><%= warehouse.address_line_1 %></td>
+      <td><%= warehouse.address_line_2 %></td>
+      <td><%= warehouse.city %></td>
+      <td><%= warehouse.state %></td>
+      <td><%= warehouse.country.name %></td>
+      <td><%= warehouse.postal_code %></td>
+      <td><%= warehouse.email %></td>
+      <td><%= warehouse.phone %></td>
+      <td><%= warehouse.fax %></td>
+      <td><%= check_box "warehouse", "active", { checked: warehouse.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_warehouse_path(warehouse) %></td>
+      <td>
+        <% if warehouse.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: warehouse.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: warehouse.id } %>
+        <% end %>
+      </td>
+      <td><%= button_to "delete", { action: "destroy", id: warehouse.id }, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Unit of Measures available.</p>
+<% end %>
+
+
+
+

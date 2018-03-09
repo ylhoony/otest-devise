@@ -1,0 +1,15 @@
+warehouses#show
+
+<p>Warehouse Name: <%= @warehouse.name %></p>
+<p>Attention: <%= @warehouse.attention %></p>
+<p>Address Line 1: <%= @warehouse.address_line_1 %></p>
+<p>Address Line 2: <%= @warehouse.address_line_2 %></p>
+<p>City<%= @warehouse.city %></p>
+<p>State/Province<%= @warehouse.state %></p>
+<p>Country<%= @warehouse.country.name %></p>
+<p>Postal/Zip Code<%= @warehouse.postal_code %></p>
+<p>Email: <%= @warehouse .email %></p>
+<p>Phone: <%= @warehouse.phone %></p>
+<p>Fax: <%= @warehouse.fax %>
+<p>Active?: <%= check_box "warehouse", "active", { checked: @warehouse.active, disabled: true } %></p>
+<p><%= link_to "edit", edit_warehouse_path(@warehouse) %></p>

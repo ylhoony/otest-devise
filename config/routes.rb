@@ -4,14 +4,14 @@ Rails.application.routes.draw do
 
   root to: "menu#index"
 
-  get "dashboard", to: "menu#show_dashboard"
+  get "dashboard", to: "menu#show_dashboard", as: "menu_dashboard"
   post "dashboard", to: "menu#create_dashboard"
-  get "demand", to: "menu#demand"
-  get "supply", to: "menu#supply"
-  get "product", to: "menu#product"
-  get "warehouse", to: "menu#warehouse"
-  get "logistics", to: "menu#logistics"
-  get "setup", to: "menu#setup"
+  get "demand", to: "menu#demand", as: "menu_demand"
+  get "supply", to: "menu#supply", as: "menu_supply"
+  get "product", to: "menu#product", as: "menu_product"
+  get "warehouse", to: "menu#warehouse", as: "menu_warehouse"
+  get "logistics", to: "menu#logistics", as: "menu_logistics"
+  get "setup", to: "menu#setup", as: "menu_setup"
 
   devise_for :users, only: [:password, :sessions], path: ""
   devise_scope :user do
@@ -40,7 +40,13 @@ Rails.application.routes.draw do
   patch "unit_of_measures/change_status", to: "unit_of_measures#change_status", as: "change_uom_status"
   resources :unit_of_measures, except: [:show]
 
-  resources :accounts
+  patch "warehouses/change_status", to: "warehouses#change_status", as: "change_warehouse_status"
+  resources :warehouses
+
+  # resources :accounts
+
+  resources :customers
+  resources :suppliers
   
 
 

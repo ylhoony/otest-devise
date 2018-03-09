@@ -1,0 +1,23 @@
+<h3>Customers List</h3>
+
+<%= link_to "Add New Customer", new_customer_path %>
+
+<% if @customers.present? %>
+<table>
+  <tr>
+    <th>Customer Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= link_to customer.name, customer_path(customer) %></td>
+      <td><%= check_box "customer", "active", { checked: customer.active, disabled: true } %></td>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Customers available.</p>
+<% end %>

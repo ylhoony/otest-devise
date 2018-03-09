@@ -1,0 +1,50 @@
+<% if @warehouse.errors.any? %>
+  <% @warehouse.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @warehouse do |f| %>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :name, "Warehouse Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :attention, "Attention: "%>
+  <%= f.text_field :attention %><br/>
+
+  <%= f.label :address_line_1, "Address Line 1: "%>
+  <%= f.text_field :address_line_1 %><br/>
+
+  <%= f.label :address_line_2, "Address Line 2: "%>
+  <%= f.text_field :address_line_2 %><br/>
+
+  <%= f.label :city, "City: "%>
+  <%= f.text_field :city %><br/>
+
+  <%= f.label :state, "State/Province: "%>
+  <%= f.text_field :state %><br/>
+
+  <%= f.label :country_id, "Country: " %>
+  <%= f.select :country_id, active_countries_list.collect { |c| [ c.name, c.id ] }, include_blank: true %><br/>  
+  
+  <%= f.label :postal_code, "Postal/Zip Code: "%>
+  <%= f.text_field :postal_code %><br/>
+
+  <%= f.label :email, "Email: "%>
+  <%= f.text_field :email %><br/>
+
+  <%= f.label :phone, "Phone: "%>
+  <%= f.text_field :phone %><br/>
+
+  <%= f.label :fax, "Fax: "%>
+  <%= f.text_field :fax %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

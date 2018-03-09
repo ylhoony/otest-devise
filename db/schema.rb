@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307183810) do
+ActiveRecord::Schema.define(version: 20180308201502) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string "company_id"
     t.string "type"
-    t.string "account_name"
+    t.integer "company_id"
+    t.string "name"
+    t.string "tax_id_number"
     t.text "comment"
     t.integer "payment_term_id"
     t.integer "currency_id"
+    t.integer "warehouse_id"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,6 +118,24 @@ ActiveRecord::Schema.define(version: 20180307183810) do
     t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name"
+    t.string "attention"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state"
+    t.integer "country_id"
+    t.string "postal_code"
+    t.string "email"
+    t.string "phone"
+    t.string "fax"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

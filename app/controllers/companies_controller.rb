@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     # form to create new company
     @company = Company.new
     @currencies = Currency.where(active: true)
-    @countries = Country.where(active: true)
+    @countries = Country.active_countries
   end
 
   def create

@@ -6,15 +6,14 @@ class Currency < ApplicationRecord
   validates :code_alpha, length: { is: 3 }, presence: true, uniqueness: true
   validates :code_numeric, length: { is: 3 }, presence: true, uniqueness: true
 
-  before_save :upcase_code, :capitalize_name
+  before_save :upcase_code
 
   def upcase_code
     self.code_alpha.upcase!
   end
 
-  def capitalize_name
-    self.name.capitalize!
+  def self.active_currencies
+    self.where(active: true).order(name: :asc)
   end
-
 
 end

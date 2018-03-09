@@ -1,0 +1,12 @@
+<h3>Customer Information</h3>
+
+<p>Customer Name: <%= @customer.name %></p>
+<p>Tax ID Number: <%= @customer.tax_id_number %></p>
+
+<p>Payment Term: <% if @customer.payment_term %> <%= @customer.payment_term.name %> <% end %></p>
+<p>Currency: <%= @customer.currency.name %></p>
+<p>Default Shipping Warehouse: <%= @customer.warehouse.name %></p>
+<p>Comment: <%= @customer.comment %></p>
+<p>Active?: <%= check_box "customer", "active", { checked: @customer.active, disabled: true } %></p>
+<p><%= link_to "edit", edit_customer_path(@customer) %></p>
+<p><%= link_to "delete", @customer, method: :delete %></p>

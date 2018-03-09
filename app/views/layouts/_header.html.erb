@@ -6,13 +6,13 @@
       <ul>
         <li><%= link_to "Move", companies_path%></li>
         <% if current_user.current_company %>
-          <li><%= link_to "Dashboard", dashboard_path %></li>
-          <li><%= link_to "Demand", demand_path %></li>
-          <li><%= link_to "Supply", supply_path %></li>
-          <li><%= link_to "Product", product_path %></li>
-          <li><%= link_to "Warehouse", warehouse_path %></li>
-          <li><%= link_to "Logistics", logistics_path %></li>
-          <li><%= link_to "Setup", setup_path %></li>
+          <li><%= link_to "Dashboard", menu_dashboard_path %></li>
+          <li><%= link_to "Demand", menu_demand_path %></li>
+          <li><%= link_to "Supply", menu_supply_path %></li>
+          <li><%= link_to "Product", menu_product_path %></li>
+          <li><%= link_to "Warehouse", menu_warehouse_path %></li>
+          <li><%= link_to "Logistics", menu_logistics_path %></li>
+          <li><%= link_to "Setup", menu_setup_path %></li>
         <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% else %>
