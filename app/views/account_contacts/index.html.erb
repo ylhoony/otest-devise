@@ -1,0 +1,15 @@
+<% if params.include?(:customer_id) %>
+  <h3><%= link_to @account.name, customer_path(@account) %> - addresses</h3>
+
+  <% @account_contacts.each do |contact| %>
+    <%= link_to contact.first_name, customer_account_contact_path(@account, contact) %><br/>
+  <% end %>
+<% end %>
+
+<% if params.include?(:supplier_id) %>
+  <h3><%= link_to @account.name, supplier_path(@account) %> - contacts</h3>
+
+  <% @account_contacts.each do |contact| %>
+    <%= link_to contact.first_name, supplier_account_contact_path(@account, contact) %><br/>
+  <% end %>
+<% end %>

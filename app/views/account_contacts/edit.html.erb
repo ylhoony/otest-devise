@@ -1,0 +1,7 @@
+<% if params.include?(:customer_id) %>
+  <h3>Edit Customer Contact for <%= @account.name %></h3>
+<% elsif params.include?(:supplier_id) %>
+  <h3>Edit Supplier Contact for <%= @account.name %></h3>
+<% end %>
+
+<%= render partial: "account_contacts/form" %>

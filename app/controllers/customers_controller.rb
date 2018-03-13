@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
   before_action :require_signed_in?, :has_current_company?
 
   def index
+    # binding.pry
     @customers = current_company.customers
   end
 
@@ -27,6 +28,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    # binding.pry
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to customer_path(@customer), notice: "Updated successfully."
@@ -44,7 +46,12 @@ class CustomersController < ApplicationController
   private
 
     def customer_params
-      params.require(:customer).permit(:name, :tax_id_number, :payment_term_id, :currency_id, :warehouse_id, :comment, :active)
+      params.require(:customer).permit(:name, :tax_id_number, :payment_term_id, :currency_id, :warehouse_id, :comment, :active
+        # ,
+        # account_addresses_attributes: [
+        #   :account_id, :company_name, :attention, :address_line_1, :address_line_2, :city, :state, :country_id, :phone, :fax, :comment, :active
+        # ]
+      )
     end
 
 end

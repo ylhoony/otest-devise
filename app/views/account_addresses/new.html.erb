@@ -1,0 +1,7 @@
+<% if params.include?(:customer_id) %>
+  <h3>New Customer Address for <%= @account.name %></h3>
+<% elsif params.include?(:supplier_id) %>
+  <h3>New Supplier Address for <%= @account.name %></h3>
+<% end %>
+
+<%= render partial: "account_addresses/form" %>

@@ -1,0 +1,41 @@
+<% if @account_contact.errors.any? %>
+  <% @account_contact.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for([@account, @account_contact]) do |f| %>
+
+    <%= f.hidden_field :account_id, value: @account.id %>
+
+    <%= f.label :first_name, "First Name: "%>
+    <%= f.text_field :first_name %><br/>
+
+    <%= f.label :last_name, "Last Name: "%>
+    <%= f.text_field :last_name %><br/>
+
+    <%= f.label :job_title, "Job Title: "%>
+    <%= f.text_field :job_title %><br/>
+
+    <%= f.label :email, "Email: "%>
+    <%= f.text_field :email %><br/>
+    
+    <%= f.label :phone, "Phone: "%>
+    <%= f.text_field :phone %><br/>
+
+    <%= f.label :mobile, "Mobile: "%>
+    <%= f.text_field :mobile %><br/>
+
+    <%= f.label :fax, "Fax: "%>
+    <%= f.text_field :fax %><br/>
+
+    <%= f.label :comment, "Comment: "%>
+    <%= f.text_area :comment %><br/>
+
+    <%= f.label :active, "Active?" %>
+    <%= f.hidden_field :active, value: 0 %>
+    <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

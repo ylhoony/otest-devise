@@ -27,7 +27,7 @@
   <%= f.text_field :state %><br/>
 
   <%= f.label :country_id, "Country: " %>
-  <%= f.select :country_id, active_countries_list.collect { |c| [ c.name, c.id ] }, include_blank: true %><br/>  
+  <%= f.select :country_id, active_countries_list.collect { |c| [ c.name, c.id ] }, include_blank: true %><br/>
   
   <%= f.label :postal_code, "Postal/Zip Code: "%>
   <%= f.text_field :postal_code %><br/>

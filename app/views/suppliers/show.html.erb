@@ -1,11 +1,15 @@
 <h3>Supplier Information</h3>
 
+<p><%= link_to "Edit", edit_supplier_path(@supplier) %> || <%= link_to "Delete", @supplier, method: :delete %></p>
+<p><%= link_to "See All Addresses", supplier_account_addresses_path(@supplier) %> || <%= link_to "See All Contacts", supplier_account_contacts_path(@supplier) %> </p>
+<p><%= link_to "Add New Address", new_supplier_account_address_path(@supplier) %> || <%= link_to "Add New Contact", new_supplier_account_contact_path(@supplier) %> </p>
+
 <p>Supplier Name: <%= @supplier.name %></p>
 <p>Tax ID Number: <%= @supplier.tax_id_number %></p>
 
 <p>Payment Term: <% if @supplier.payment_term %> <%= @supplier.payment_term.name %> <% end %></p>
 <p>Currency: <%= @supplier.currency.name %></p>
-<p>Default Receipt Warehouse: <%= @supplier.warehouse.name %></p>
+<p>Default Receipt Warehouse: <% if @supplier.warehouse %> <%= @supplier.warehouse.name %> <% end %></p>
 <p>Comment: <%= @supplier.comment %></p>
 <p>Active?: <%= check_box "supplier", "active", { checked: @supplier.active, disabled: true } %></p>
 <p><%= link_to "edit", edit_supplier_path(@supplier) %></p>

@@ -4,6 +4,8 @@ class Account < ApplicationRecord
   # belongs_to :payment_term
   # belongs_to :warehouse
 
+  # has_many :account_addresses
+
   validates :currency_id, presence: true
 
   def warehouse=(warehouse)
