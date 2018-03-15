@@ -1,0 +1,34 @@
+<h2>Product Group List</h2>
+<%= link_to "Add Product Group", new_product_group_path %><br/>
+
+<% if @product_groups.present? %>
+<table>
+  <tr>
+    <th>Product Category Name</th>
+    <th>Product Group Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @product_groups.each do |product_group| %>
+    <tr>
+      <td><%= product_group.product_category.name %></td>
+      <td><%= product_group.name %></td>
+      <td><%= check_box "product_group", "active", { checked: product_group.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_product_group_path(product_group) %></td>
+      <td>
+        <% if product_group.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: product_group.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: product_group.id } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no payment terms available</p>
+<% end %>
+
+

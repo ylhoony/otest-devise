@@ -1,0 +1,43 @@
+<h3>Company Address List</h3>
+
+<%= link_to "Add New Company Address", new_company_address_path %>
+
+<% if @addresses.present? %>
+<table>
+  <tr>
+    <th>Company Name</th>
+    <th>Attention</th>
+    <th>Address Line 1</th>
+    <th>Address Line 2</th>
+    <th>City</th>
+    <th>State/Province</th>
+    <th>Country</th>
+    <th>Postal Code</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Fax</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.company_name %></td>
+      <td><%= address.attention %></td>
+      <td><%= address.address_line_1 %></td>
+      <td><%= address.address_line_2 %></td>
+      <td><%= address.city %></td>
+      <td><%= address.state %></td>
+      <td><%= address.country.name %></td>
+      <td><%= address.postal_code %></td>
+      <td><%= address.phone %></td>
+      <td><%= address.fax %></td>
+      <td><%= link_to "edit", edit_company_address_path(address) %></td>
+      <td><%= link_to "delete", company_address_path(address), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no Unit of Measures available.</p>
+<% end %>
+

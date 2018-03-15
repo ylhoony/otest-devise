@@ -1,0 +1,32 @@
+<h2>Product Category List</h2>
+<%= link_to "Add Product Category", new_product_category_path %><br/>
+
+<% if @product_categories.present? %>
+<table>
+  <tr>
+    <th>Product Category Name</th>
+    <th>Active?</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @product_categories.each do |product_category| %>
+    <tr>
+      <td><%= product_category.name %></td>
+      <td><%= check_box "product_category", "active", { checked: product_category.active, disabled: true } %></td>
+      <td><%= link_to "edit", edit_product_category_path(product_category) %></td>
+      <td>
+        <% if product_category.active? %>
+          <%= button_to "deactivate", { action: "change_status" }, method: "patch", params: { id: product_category.id } %>
+        <% else %>
+          <%= button_to "activate", { action: "change_status" }, method: "patch", params: { id: product_category.id } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There are no payment terms available</p>
+<% end %>
+
+

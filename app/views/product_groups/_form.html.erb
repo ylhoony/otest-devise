@@ -1,0 +1,23 @@
+<% if @product_group.errors.any? %>
+  <% @product_group.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @product_group do |f| %>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :product_category_id, "Product Category: " %>
+  <%= f.select :product_category_id, @product_categories.collect { |p| [ p.name, p.id ] }, include_blank: true %><br/>
+
+  <%= f.label :name, "Product Group Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <%= f.submit %>
+
+<% end %>

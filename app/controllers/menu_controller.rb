@@ -6,6 +6,7 @@ class MenuController < ApplicationController
   end
 
   def show_dashboard
+
     render "menu/dashboard"
   end
 

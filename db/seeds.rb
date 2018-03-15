@@ -25,3 +25,20 @@ payment_options = PaymentOption.create([{ name: "day(s) after invoice date", act
                                         { name: "end of month", active: true },
                                         { name: "of the current month", active: true },
                                         { name: "day(s) after the end of the invoice month", active: true }])
+
+company = Company.create(name: "Test Company", currency_id: 3, country_id: 4, active: true)
+company.employees.create(user_id: 1, active: true)
+User.first.current_company = company
+
+warehouses = Warehouse.create([{ company_id: 1, name: "Warehouse WA", attention: "Johnn Doe", address_line_1: "123 Broadway", address_line_2: "Unit 1", city: "Seattle", state: "WA", country_id: 4, postal_code: "12345", email: "wa@whse.co", phone: "123445223", fax: "21343112", active: true },
+                               { company_id: 1, name: "Warehouse NY", attention: "Laura Jane", address_line_1: "4379 Broadway", address_line_2: "2135", city: "New York", state: "NY", country_id: 4, postal_code: "12345", email: "ny@whse.co", phone: "9873428532", fax: "624332532", active: true }])
+
+payment_terms = PaymentTerm.create([{ name: "Net 30", company_id: 1, trade_credit_percent: 0, trade_credit_days: 0, net_days: 30, payment_option_id: 1, active: true}])
+
+freight_terms = FreightTerm.create([{ company_id: 1, name: "EXW", active: true },
+                                    { company_id: 1, name: "FOB", active: true }])
+
+uoms = UnitOfMeasure.create([{ company_id: 1, name: "Each", active: true},
+                             { company_id: 1, name: "Case", active: true}])
+
+product_types = ProductType.create([{ name: "Inventory" }, { name: "Service" } ])

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  product_group_id: 1
+  sku: MyString
+  name: MyString
+  price: 1
+  unit_of_measure_id: 1
+
+two:
+  company_id: 1
+  product_group_id: 1
+  sku: MyString
+  name: MyString
+  price: 1
+  unit_of_measure_id: 1

@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
   before_action :require_signed_in?
 
   def index
+    # binding.pry
     @companies = current_user.companies
   end
 

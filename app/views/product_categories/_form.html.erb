@@ -1,0 +1,36 @@
+<% if @product_category.errors.any? %>
+  <% @product_category.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @product_category do |f| %>
+
+  <%= f.label :name, "Product Category Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :active, "Active?" %>
+  <%= f.hidden_field :active, value: 0 %>
+  <%= f.check_box :active %><br/>
+
+  <% if current_page?(action: "new") %>
+
+    <h4>== Product Group ==</h4>
+
+    <%= f.fields_for :product_groups, @product_category.product_groups.build do |group| %>
+
+      <%= group.hidden_field :company_id, value: current_company.id %>
+
+      <%= group.label :name, "Product Group Name" %>
+      <%= group.text_field :name %><br/>
+
+      <%= group.hidden_field :active, value: true %>
+
+    <% end %>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

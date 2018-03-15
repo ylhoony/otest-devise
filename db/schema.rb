@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313080512) do
+ActiveRecord::Schema.define(version: 20180314172154) do
 
   create_table "account_addresses", force: :cascade do |t|
     t.string "account_type"
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 20180313080512) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "company_addresses", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "company_name"
+    t.string "attention"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state"
+    t.integer "country_id"
+    t.string "postal_code"
+    t.string "phone"
+    t.string "fax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "alpha_2_code"
@@ -125,6 +141,53 @@ ActiveRecord::Schema.define(version: 20180313080512) do
     t.integer "net_days", default: 0
     t.integer "payment_option_id"
     t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_groups", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "product_category_id"
+    t.string "name"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "product_type_id"
+    t.integer "product_group_id"
+    t.string "sku"
+    t.string "name"
+    t.integer "price"
+    t.integer "unit_of_measure_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "company_address_id"
+    t.integer "warehouse_id"
+    t.integer "account_id"
+    t.integer "account_address_id"
+    t.string "type"
+    t.string "order_ref_number"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

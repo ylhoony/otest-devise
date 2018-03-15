@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   devise_for :users, only: :registration, path: "", path_names: { registration: 'sign_up' }
 
   resources :companies
+  resources :company_addresses
   resources :employees
 
   patch "currencies/change_status", to: "currencies#change_status", as: "change_currency_status"
@@ -58,5 +59,20 @@ Rails.application.routes.draw do
 
   # resources :account_addresses
   # resources :account_contacts
+
+  resources :products
+
+  resources :product_types
+
+  patch "product_categories/change_status", to: "product_categories#change_status", as: "change_product_categories_status"
+  resources :product_categories
+
+  patch "product_groups/change_status", to: "product_groups#change_status", as: "change_product_groups_status"
+  resources :product_groups
+
+  # resources :transactions
+
+  resources :purchase_orders
+  
 
 end

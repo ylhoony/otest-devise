@@ -1,0 +1,8 @@
+<h4><%= @product.name %></h4>
+<p>SKU: <%= @product.sku %></p>
+<p>Product Type: <%= @product.product_type.name %></p>
+<p>Product Group: <%= @product.product_group.name %></p>
+<p>Unit of Measure: <%= @product.unit_of_measure.name %></p>
+<p>Unit Price: <%= number_to_currency(@product.price) %></p>
+</br>
+<p><%= link_to "edit", edit_product_path(@product) %> || <%= link_to "delete", product_path(@product), method: :delete %>

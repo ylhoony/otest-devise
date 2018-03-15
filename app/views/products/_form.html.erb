@@ -1,0 +1,31 @@
+<% if @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @product do |f| %>
+
+  <%= f.hidden_field :company_id, value: current_company.id %>
+
+  <%= f.label :product_type_id, "Product Type"%>
+  <%= f.collection_select :product_type_id, @product_types, :id, :name %><br/>
+
+  <%= f.label :product_group_id, "Product Group"%>
+  <%= f.collection_select :product_group_id, @product_groups, :id, :name_with_category %><br/>
+
+  <%= f.label :sku, "SKU: "%>
+  <%= f.text_field :sku %><br/>
+
+  <%= f.label :name, "Product Name: "%>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :unit_of_measure_id, "Unit of Measure"%>
+  <%= f.collection_select :unit_of_measure_id, @unit_of_measures, :id, :name %><br/>
+
+  <%= f.label :price, "Unit Price: "%>
+  <%= f.number_field :price, class: :text_field, step: :any %><br/>
+
+  <%= f.submit %>
+
+<% end %>
