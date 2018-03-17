@@ -1,6 +1,6 @@
-class CreateTransactions < ActiveRecord::Migration[5.1]
+class CreateAccountOrders < ActiveRecord::Migration[5.1]
   def change
-    create_table :transactions do |t|
+    create_table :account_orders do |t|
       t.integer :company_address_id
       t.integer :warehouse_id
       t.integer :account_id
@@ -8,6 +8,7 @@ class CreateTransactions < ActiveRecord::Migration[5.1]
       t.string :type
       t.string :order_ref_number
       t.text :comment
+      t.integer :order_status_id
 
       t.timestamps null: false
     end

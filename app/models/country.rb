@@ -8,7 +8,7 @@ class Country < ApplicationRecord
   validates :alpha_3_code, length: { is: 3 }, presence: true, uniqueness: true
   validates :numeric_code, length: { is: 3 }, presence: true, uniqueness: true
 
-  before_save :upcase_code, :capitalize_name
+  before_save :upcase_code
 
   def upcase_code
     self.alpha_2_code.upcase!

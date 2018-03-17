@@ -5,7 +5,7 @@ class Account < ApplicationRecord
   # belongs_to :warehouse
 
   # has_many :account_addresses
-  has_many :transactions
+  # has_many :transactions
 
   validates :currency_id, presence: true
 

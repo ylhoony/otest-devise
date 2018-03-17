@@ -1,21 +1,21 @@
-<% if @purchase_order.errors.any? %>
-  <% @purchase_order.errors.full_messages.each do |message| %>
+<% if @sales_order.errors.any? %>
+  <% @sales_order.errors.full_messages.each do |message| %>
     <p><%= message %></p>
   <% end %>
 <% end %>
 
-<%= form_for @purchase_order do |f| %>
+<%= form_for @sales_order do |f| %>
 
-  <%= f.label :company_address_id, "Purchase Order From: " %>
+  <%= f.label :company_address_id, "Sales Order To: " %>
   <%= f.collection_select :company_address_id, current_company.company_addresses.all, :id, :company_name %><br/>
 
-  <%= f.label :account_id, "Purchase Order To: " %>
-  <%= f.collection_select :account_id, current_company.suppliers.all, :id, :name %><br/>
+  <%= f.label :account_id, "Sales Order From: " %>
+  <%= f.collection_select :account_id, current_company.customers.all, :id, :name %><br/>
 
-  <%= f.label :account_address_id, "Supplier Address: " %>
-  <%= f.collection_select :account_address_id, supplier_addresses_list, :id, :name_with_account %><br/>
+  <%= f.label :account_address_id, "Customer Address: " %>
+  <%= f.collection_select :account_address_id, customer_addresses_list, :id, :name_with_account %><br/>
 
-  <%= f.label :warehouse_id, "Ship To Warehouse: " %>
+  <%= f.label :warehouse_id, "Ship From Warehouse: " %>
   <%= f.collection_select :warehouse_id, current_company.warehouses.all, :id, :name %><br/>
 
   <%= f.label :order_ref_number %>
@@ -37,7 +37,7 @@
         <th>Quantity</th>
       </tr>
     
-      <%= f.fields_for :transaction_lines, @purchase_order.transaction_lines.build do |trans_line| %>
+      <%= f.fields_for :transaction_lines, @sales_order.transaction_lines.build do |trans_line| %>
           
           <tr>
             <td><%= trans_line.collection_select :product_id, current_company.products.all, :id, :name, prompt: true %></td>
@@ -47,7 +47,7 @@
           </tr>
         
       <% end %>
-      <%= f.fields_for :transaction_lines, @purchase_order.transaction_lines.build do |trans_line| %>
+      <%= f.fields_for :transaction_lines, @sales_order.transaction_lines.build do |trans_line| %>
 
           <tr>
             <td><%= trans_line.collection_select :product_id, current_company.products.all, :id, :name, prompt: true %></td>

@@ -6,4 +6,11 @@ module AccountAddressesHelper
     end.flatten
   end
 
+  def customer_addresses_list
+    current_company.customers.map do |customer|
+      customer.account_addresses
+    end.flatten
+  end
+
+
 end

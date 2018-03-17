@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "menu#index"
@@ -70,9 +69,13 @@ Rails.application.routes.draw do
   patch "product_groups/change_status", to: "product_groups#change_status", as: "change_product_groups_status"
   resources :product_groups
 
-  # resources :transactions
-
+  patch "purchase_orders/change_status", to: "purchase_orders#change_status", as: "change_po_status"
   resources :purchase_orders
+
+  patch "sales_orders/change_status", to: "sales_orders#change_status", as: "change_so_status"
+  resources :sales_orders
+
+  resources :inventories, only: [:index, :show]
   
 
 end

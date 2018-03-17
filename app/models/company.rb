@@ -8,7 +8,8 @@ class Company < ApplicationRecord
   has_many :accounts
   has_many :company_addresses
   has_many :customers
-  has_many :freight_terms  
+  has_many :freight_terms
+  has_many :inventories
   has_many :suppliers
   has_many :payment_terms
   has_many :product_categories

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314172154) do
+ActiveRecord::Schema.define(version: 20180316215220) do
 
   create_table "account_addresses", force: :cascade do |t|
     t.string "account_type"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20180314172154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_type", "account_id"], name: "index_account_contacts_on_account_type_and_account_id"
+  end
+
+  create_table "account_orders", force: :cascade do |t|
+    t.integer "company_address_id"
+    t.integer "warehouse_id"
+    t.integer "account_id"
+    t.integer "account_address_id"
+    t.string "type"
+    t.string "order_ref_number"
+    t.text "comment"
+    t.integer "order_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -126,6 +139,22 @@ ActiveRecord::Schema.define(version: 20180314172154) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "product_id"
+    t.integer "warehouse_id"
+    t.decimal "quantity"
+    t.decimal "total_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_options", force: :cascade do |t|
     t.string "name"
     t.boolean "active", default: false
@@ -180,14 +209,12 @@ ActiveRecord::Schema.define(version: 20180314172154) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: :cascade do |t|
-    t.integer "company_address_id"
-    t.integer "warehouse_id"
-    t.integer "account_id"
-    t.integer "account_address_id"
-    t.string "type"
-    t.string "order_ref_number"
+  create_table "transaction_lines", force: :cascade do |t|
+    t.integer "account_order_id"
+    t.integer "product_id"
     t.text "comment"
+    t.decimal "unit_price", precision: 30, scale: 2, default: "0.0"
+    t.decimal "quantity", precision: 30, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

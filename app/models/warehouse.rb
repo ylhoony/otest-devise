@@ -2,6 +2,8 @@ class Warehouse < ApplicationRecord
   belongs_to :company
   belongs_to :country
 
+  has_many :inventories
+
   validates :name, presence: true
   validates :country_id, presence: true
 

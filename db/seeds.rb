@@ -30,6 +30,8 @@ company = Company.create(name: "Test Company", currency_id: 3, country_id: 4, ac
 company.employees.create(user_id: 1, active: true)
 User.first.current_company = company
 
+company_address = CompanyAddress.create(company_id: 1, company_name: "Test Inc.", attention: "John Doe", address_line_1: "789 Main St.", address_line_2: "Unit 123", city: "San Diego", state: "CA", country_id: 4, postal_code: "93422", phone: "123434232", fax: "431321321" )
+
 warehouses = Warehouse.create([{ company_id: 1, name: "Warehouse WA", attention: "Johnn Doe", address_line_1: "123 Broadway", address_line_2: "Unit 1", city: "Seattle", state: "WA", country_id: 4, postal_code: "12345", email: "wa@whse.co", phone: "123445223", fax: "21343112", active: true },
                                { company_id: 1, name: "Warehouse NY", attention: "Laura Jane", address_line_1: "4379 Broadway", address_line_2: "2135", city: "New York", state: "NY", country_id: 4, postal_code: "12345", email: "ny@whse.co", phone: "9873428532", fax: "624332532", active: true }])
 
@@ -42,3 +44,24 @@ uoms = UnitOfMeasure.create([{ company_id: 1, name: "Each", active: true},
                              { company_id: 1, name: "Case", active: true}])
 
 product_types = ProductType.create([{ name: "Inventory" }, { name: "Service" } ])
+
+
+product_categories = ProductCategory.create([{ company_id: 1, name: "Electronics", active: true },
+                                             { company_id: 1, name: "Books", active: true }])
+
+product_groups = ProductGroup.create([{ company_id: 1, product_category_id: 1, name: "Computer", active: true },
+                                      { company_id: 1, product_category_id: 1, name: "Laptop", active: true },
+                                      { company_id: 1, product_category_id: 1, name: "MP3 Players", active: false },
+                                      { company_id: 1, product_category_id: 2, name: "Novels", active: true },
+                                      { company_id: 1, product_category_id: 2, name: "Comics", active: true }])
+
+products = Product.create([{ company_id: 1, product_type_id: 1, product_group_id: 1, sku: "IP6", name: "iPhone 6", price: 599.99, unit_of_measure_id: 1 },
+                           { company_id: 1, product_type_id: 1, product_group_id: 4, sku: "ISBN-231010210", name: "The Vegetarian", price: 29.99, unit_of_measure_id: 1 }])
+
+
+suppliers = Supplier.create([{ company_id: 1, name: "Acme Supply", tax_id_number: "T213413321", comment: "testing", payment_term_id: 1, currency_id: 4, warehouse_id: 1, active: true }])
+supplier_address = Supplier.first.account_addresses.create( company_name: "Acme Supply Inc.", attention: "Brian Jane", address_line_1: "4213 Broadway", address_line_2: "Unit 12", city: "New York", state: "NY", country_id: 4, postal_code: "94329", email: "jo@fo.co", phone: "43131415", fax: "54225234", comment: "supplier comment", active: true )
+
+
+order_statuses = OrderStatus.create([{ name: "Ordered"}, { name: "Received"}, {name: "Shipped"} ])
+
