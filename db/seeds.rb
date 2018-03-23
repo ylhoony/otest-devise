@@ -18,7 +18,7 @@ countries = Country.create([{ name: "Korea, Republic of", alpha_2_code: "KR", al
                             { name: "Germany", alpha_2_code: "DE", alpha_3_code: "DEU", numeric_code: "276", active: true },
                             { name: "Canada", alpha_2_code: "CA", alpha_3_code: "CAN", numeric_code: "124", active: true },
                             { name: "United States", alpha_2_code: "US", alpha_3_code: "USA", numeric_code: "840", active: true},
-                            { name: "AUSTRALIA", alpha_2_code: "AU", alpha_3_code: "AUS", numeric_code: "036", active: true }])
+                            { name: "Australia", alpha_2_code: "AU", alpha_3_code: "AUS", numeric_code: "036", active: true }])
 
 payment_options = PaymentOption.create([{ name: "day(s) after invoice date", active: true },
                                         { name: "of the month following invoice date", active: true },
@@ -58,10 +58,8 @@ product_groups = ProductGroup.create([{ company_id: 1, product_category_id: 1, n
 products = Product.create([{ company_id: 1, product_type_id: 1, product_group_id: 1, sku: "IP6", name: "iPhone 6", price: 599.99, unit_of_measure_id: 1 },
                            { company_id: 1, product_type_id: 1, product_group_id: 4, sku: "ISBN-231010210", name: "The Vegetarian", price: 29.99, unit_of_measure_id: 1 }])
 
-
 suppliers = Supplier.create([{ company_id: 1, name: "Acme Supply", tax_id_number: "T213413321", comment: "testing", payment_term_id: 1, currency_id: 4, warehouse_id: 1, active: true }])
 supplier_address = Supplier.first.account_addresses.create( company_name: "Acme Supply Inc.", attention: "Brian Jane", address_line_1: "4213 Broadway", address_line_2: "Unit 12", city: "New York", state: "NY", country_id: 4, postal_code: "94329", email: "jo@fo.co", phone: "43131415", fax: "54225234", comment: "supplier comment", active: true )
-
 
 order_statuses = OrderStatus.create([{ name: "Ordered"}, { name: "Received"}, {name: "Shipped"} ])
 
